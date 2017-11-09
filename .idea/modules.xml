@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/guang.iml" filepath="$PROJECT_DIR$/guang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-common/guang-common.iml" filepath="$PROJECT_DIR$/guang-common/guang-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-client/guang-upms-client.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-client/guang-upms-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-common/guang-upms-common.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-common/guang-upms-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-dao/guang-upms-dao.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-dao/guang-upms-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-rpc-api/guang-upms-rpc-api.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-rpc-api/guang-upms-rpc-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-rpc-service/guang-upms-rpc-service.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-rpc-service/guang-upms-rpc-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-server/guang-upms-server.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-server/guang-upms-server.iml" />
+    </modules>
+  </component>
+</project>

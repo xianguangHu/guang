@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="guang-common" />
+        <module name="guang-upms-client" />
+        <module name="guang-upms-common" />
+        <module name="guang-upms-dao" />
+        <module name="guang-upms-rpc-api" />
+        <module name="guang-upms-rpc-service" />
+        <module name="guang-upms-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="guang" target="1.5" />
+      <module name="guang-common" target="1.6" />
+      <module name="guang-upms" target="1.5" />
+      <module name="guang-upms-client" target="1.5" />
+      <module name="guang-upms-common" target="1.5" />
+      <module name="guang-upms-dao" target="1.5" />
+      <module name="guang-upms-rpc-api" target="1.6" />
+      <module name="guang-upms-rpc-service" target="1.6" />
+      <module name="guang-upms-server" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

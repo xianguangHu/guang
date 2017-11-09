@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:dev.properties"/>
+
+
+    <!--shiro的web过滤器-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="${guang.upms.sso.server.url}"/>
+        <property name="successUrl" value="${guang.upms.successUrl}"/>
+        <property name="unauthorizedUrl" value="${guang.upms.unauthorizedUrl}"/>
+        <!--<property name="filters">-->
+            <!--<util:map>-->
+                <!--<entry key="authc" value-ref="upmsAuthenticationFilter"/>-->
+            <!--</util:map>-->
+        <!--</property>-->
+        <property name="filterChainDefinitions">
+            <value>
+                /manage/** = authc
+                /manage/index = user
+                /druid/** = user
+                /swagger-ui.html = user
+                /resources/** = anon
+                /** = anon
+            </value>
+        </property>
+    </bean>
+
+    <!-- 安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="upmsRealm"/>
+    </bean>
+
+    <!--realm实现，继承自AuthorizingRealm-->
+    <bean id="upmsRealm" class="com.guang.upms.client.shiro.realm.UpmsRealm">
+    </bean>
+
+    <!-- 会话管理器-->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- 全局session超时时间-->
+        <property name="globalSessionTimeout" value="1800000"/>
+        <!-- sessionDao-->
+        <property name="sessionDAO" ref="sessionDAO"/>
+    </bean>
+
+    <!-- 会话dao ，可重写，持久化session-->
+    <bean id="sessionDAO" class="com.guang.upms.client.shiro.session.UpmsSessionDao"/>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 开启Shiro Spring AOP权限注解@RequiresPermissions的支持 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+</beans>
