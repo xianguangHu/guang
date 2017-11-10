@@ -46,6 +46,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table tableName="upms_user"/>
+        <!--<table tableName="upms_user"/>-->
+        <table tableName="upms_system"/>
     </context>
 </generatorConfiguration>

@@ -14,5 +14,8 @@
     <!-- 接口服务 -->
     <dubbo:reference id="upmsApiService" interface="com.guang.upms.rpc.api.UpmsApiService" mock="true"/>
 
+    <!-- 系统-->
+    <dubbo:reference id="upmsSystemService" interface="com.guang.upms.rpc.api.UpmsSystemService" mock="true"/>
+
 
 </beans>

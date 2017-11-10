@@ -1,9 +1,10 @@
 package com.guang.upms.dao.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpmsUserExample {
+public class UpmsUserExample implements Serializable{
     protected String orderByClause;
 
     protected boolean distinct;
