@@ -1,8 +1,11 @@
 package com.guang.upms.rpc.api;
 
+import com.guang.upms.dao.model.UpmsPermission;
 import com.guang.upms.dao.model.UpmsUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 
 /**
@@ -18,6 +21,12 @@ public class UpmsApiServiceMock implements UpmsApiService {
     @Override
     public UpmsUser selectUpmsUserByUsername(String username) {
         _log.info("UpmsApiServiceMock => selectUpmsUserByUsername");
+        return null;
+    }
+
+    @Override
+    public List<UpmsPermission> selectUpmsPermissionByUpmsUserId(Integer upmsUserId) {
+        _log.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserId");
         return null;
     }
 

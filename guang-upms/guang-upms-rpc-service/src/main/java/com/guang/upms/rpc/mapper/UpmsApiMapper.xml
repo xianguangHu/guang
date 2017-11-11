@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guang.upms.rpc.mapper.UpmsApiMapper">
+
+    <resultMap id="UpmsPermissionResultMap" type="com.guang.upms.dao.model.UpmsPermission">
+        <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+        <result column="system_id" jdbcType="INTEGER" property="systemId" />
+        <result column="pid" jdbcType="INTEGER" property="pid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="permission_value" jdbcType="VARCHAR" property="permissionValue" />
+        <result column="uri" jdbcType="VARCHAR" property="uri" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="ctime" jdbcType="BIGINT" property="ctime" />
+        <result column="orders" jdbcType="BIGINT" property="orders" />
+    </resultMap>
+
+    <sql id="UpmsPermission_Column_List">
+        permission_id, system_id, pid, name, type, permission_value, uri, icon, status, ctime, orders
+    </sql>
+
+    <!-- 根据用户获取所拥有的权限-->
+    <select id="selectUpmsPermissionByUpmsUserId" parameterType="java.lang.Integer" resultMap="UpmsPermissionResultMap">
+      SELECT
+            <include refid="UpmsPermission_Column_List"/>
+      FROM upms_permission up WHERE up.status = 1 AND up.permission_id IN (
+        SELECT urp.permission_id FROM upms_role_permission urp WHERE urp.role_id IN (
+              SELECT uur.role_id FROM upms_user_role uur WHERE uur.user_id=#{upmsUserId,jdbcType=INTEGER}
+        )
+        UNION
+        SELECT uup1.permission_id FROM upms_user_permission uup1 WHERE uup1.user_id=#{upmsUserId,jdbcType=INTEGER} AND uup1.type=1
+      ) AND up.permission_id NOT IN (
+        SELECT uup2.permission_id FROM upms_user_permission uup2 WHERE uup2.user_id=#{upmsUserId,jdbcType=INTEGER} AND uup2.type=2
+      ) ORDER BY up.orders ASC
+    </select>
+</mapper>

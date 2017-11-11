@@ -47,6 +47,8 @@
         </javaClientGenerator>
         <!-- 指定数据库表 -->
         <!--<table tableName="upms_user"/>-->
-        <table tableName="upms_system"/>
+        <!--<table tableName="upms_system"/>-->
+        <!--<table tableName="upms_permission"/>-->
+
     </context>
 </generatorConfiguration>

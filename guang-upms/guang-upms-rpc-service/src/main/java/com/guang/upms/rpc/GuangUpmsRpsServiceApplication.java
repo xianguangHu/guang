@@ -13,7 +13,6 @@ import java.io.IOException;
  * @create 2017-11-07-上午10:50
  **/
 public class GuangUpmsRpsServiceApplication {
-
     //初始化日志对象，打印会带有类名
     private static Logger _log = LoggerFactory.getLogger(GuangUpmsRpsServiceApplication.class);
 

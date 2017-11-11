@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+
 /**
 * 降级实现UpmsSystemService接口
 * Created by shuzheng on 2017/3/20.
@@ -20,4 +21,5 @@ public class UpmsSystemServiceMock implements UpmsSystemService {
         _log.info("UpmsSystemServiceMock => selectByExample");
         return null;
     }
+
 }

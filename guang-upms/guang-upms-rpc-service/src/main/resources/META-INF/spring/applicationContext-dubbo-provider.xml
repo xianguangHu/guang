@@ -12,7 +12,7 @@
     <!--暴露端口-->
     <dubbo:protocol name="dubbo" port="20881"/>
 
-    <dubbo:monitor protocol="registry"/>
+    <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- 接口服务-->
     <bean id="upmsApiService" class="com.guang.upms.rpc.service.imp.UpmsApiServiceImpl"/>
