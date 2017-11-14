@@ -2,6 +2,7 @@ package com.guang.upms.rpc.service.imp;
 
 import com.guang.upms.dao.mapper.UpmsUserMapper;
 import com.guang.upms.dao.model.UpmsPermission;
+import com.guang.upms.dao.model.UpmsRole;
 import com.guang.upms.dao.model.UpmsUser;
 import com.guang.upms.dao.model.UpmsUserExample;
 import com.guang.upms.rpc.api.UpmsApiService;
@@ -65,5 +66,18 @@ public class UpmsApiServiceImpl implements UpmsApiService{
         //获取权限 role权限联合upmsUser权限
         List<UpmsPermission> upmsPermissions = upmsApiMapper.selectUpmsPermissionByUpmsUserId(user.getUserId());
         return upmsPermissions;
+    }
+
+    @Override
+    public List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId) {
+        //查询用户
+        UpmsUser user = upmsUserMapper.selectByPrimaryKey(upmsUserId);
+        //判断用户是否存在或锁定
+        if (null == user || 1 == user.getLocked()) {
+            _log.info("selectUpmsPermissionByUpmsUserId : upmsUserId={}",upmsUserId);
+            return null;
+        }
+        List<UpmsRole> upmsRoles = upmsApiMapper.selectUpmsRoleByUpmsUserId(user.getUserId());
+        return upmsRoles;
     }
 }

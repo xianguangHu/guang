@@ -15,5 +15,7 @@ public interface UpmsSystemService {
     List<UpmsSystem> selectByExample(UpmsSystemExample example);
 
 
+    List<UpmsSystem> selectByExampleForOffsetPage(UpmsSystemExample example,Integer offset,Integer limit);
 
+    int insertSelective(UpmsSystem upmsSystem);
 }

@@ -1,5 +1,6 @@
 package com.guang.upms.rpc.service.imp;
 
+import com.github.pagehelper.PageHelper;
 import com.guang.upms.dao.mapper.UpmsSystemMapper;
 import com.guang.upms.dao.model.UpmsSystem;
 import com.guang.upms.dao.model.UpmsSystemExample;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author huxianguang
@@ -24,6 +27,19 @@ public class UpmsSystemServiceImpl implements UpmsSystemService {
     @Override
     public List<UpmsSystem> selectByExample(UpmsSystemExample example) {
         return upmsSystemMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<UpmsSystem> selectByExampleForOffsetPage(UpmsSystemExample example, Integer offset, Integer limit) {
+        PageHelper.offsetPage(offset,limit,false);
+        List<UpmsSystem> upmsSystems = upmsSystemMapper.selectByExample(example);
+        return upmsSystems;
+    }
+
+    @Override
+    public int insertSelective(UpmsSystem upmsSystem) {
+        int count = upmsSystemMapper.insertSelective(upmsSystem);
+        return count;
     }
 
 }

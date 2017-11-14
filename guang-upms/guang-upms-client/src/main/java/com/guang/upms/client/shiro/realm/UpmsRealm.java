@@ -1,15 +1,23 @@
 package com.guang.upms.client.shiro.realm;
 
 import com.guang.common.utils.MD5Util;
+import com.guang.upms.dao.model.UpmsPermission;
+import com.guang.upms.dao.model.UpmsRole;
 import com.guang.upms.dao.model.UpmsUser;
 import com.guang.upms.rpc.api.UpmsApiService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author huxianguang
@@ -59,7 +67,28 @@ public class UpmsRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        String username = (String) principals.getPrimaryPrincipal();
+        UpmsUser user = upmsApiService.selectUpmsUserByUsername(username);
+        List<UpmsRole> upmsRoles = upmsApiService.selectUpmsRoleByUpmsUserId(user.getUserId());
+        Set<String> roles = new HashSet<String>();
+        for (UpmsRole role : upmsRoles) {
+            if (StringUtils.isNotBlank(role.getName())) {
+                roles.add(role.getName());
+            }
+        }
+
+        //获取当前用户所有权限
+        List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(user.getUserId());
+        Set<String> permissions = new HashSet<String>();
+        for (UpmsPermission upmsPermission : upmsPermissions) {
+            if (StringUtils.isNotBlank(upmsPermission.getPermissionValue())) {
+                permissions.add(upmsPermission.getPermissionValue());
+            }
+        }
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRoles(roles);
+        info.addStringPermissions(permissions);
+        return info;
     }
 
 

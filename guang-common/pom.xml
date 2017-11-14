@@ -134,6 +134,7 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
+        <!-- 分页-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -190,5 +191,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.6.5</version>
         </dependency>
+
+        <!--业务逻辑验证框架fluent-validator-->
+        <dependency>
+            <groupId>com.baidu.unbiz</groupId>
+            <artifactId>fluent-validator</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
     </dependencies>
 </project>

@@ -49,6 +49,7 @@
         <!--<table tableName="upms_user"/>-->
         <!--<table tableName="upms_system"/>-->
         <!--<table tableName="upms_permission"/>-->
+        <!--<table tableName="upms_role"/>-->
 
     </context>
 </generatorConfiguration>

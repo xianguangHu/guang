@@ -64,6 +64,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.5" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.5" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.5" />
+          <element id="library" level="project" name="Maven: com.baidu.unbiz:fluent-validator:1.0.5" />
           <element id="archive" name="guang-upms-client-1.0-SNAPSHOT.jar">
             <element id="module-output" name="guang-upms-client" />
           </element>

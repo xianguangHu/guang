@@ -22,4 +22,16 @@ public class UpmsSystemServiceMock implements UpmsSystemService {
         return null;
     }
 
+    @Override
+    public List<UpmsSystem> selectByExampleForOffsetPage(UpmsSystemExample example, Integer offset, Integer limit) {
+        _log.info("UpmsSystemServiceMock => selectByExampleForOffsetPage");
+        return null;
+    }
+
+    @Override
+    public int insertSelective(UpmsSystem upmsSystem) {
+        _log.info("UpmsSystemServiceMock => insertSelective");
+        return 0;
+    }
+
 }

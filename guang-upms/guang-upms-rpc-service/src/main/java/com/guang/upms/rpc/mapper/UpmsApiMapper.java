@@ -2,6 +2,7 @@ package com.guang.upms.rpc.mapper;
 
 
 import com.guang.upms.dao.model.UpmsPermission;
+import com.guang.upms.dao.model.UpmsRole;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface UpmsApiMapper {
      * @return
      */
     List<UpmsPermission> selectUpmsPermissionByUpmsUserId(Integer upmsUserId);
+
+    List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId);
 }

@@ -35,6 +35,8 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <!-- 配置mybatis 配置文件 此文件中只有分页插件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath*:com/guang/upms/dao/mapper/*.xml"/>
     </bean>
 
