@@ -75,7 +75,7 @@ public interface UpmsUserMapper {
     int updateByExample(@Param("record") UpmsUser record, @Param("example") UpmsUserExample example);
 
     /**
-     * 按条件跟新
+     * 按条件跟新  如果字段为null 就不跟新
      * @param record
      * @return
      */

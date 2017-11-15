@@ -2,7 +2,6 @@ package com.guang.upms.server.controller.manage;
 
 import com.baidu.unbiz.fluentvalidator.ComplexResult;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;
-import com.baidu.unbiz.fluentvalidator.ResultCollector;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import com.guang.common.validator.LengthValidator;
 import com.guang.upms.common.constant.UpmsResult;
@@ -13,16 +12,15 @@ import com.guang.upms.rpc.api.UpmsSystemService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
+/** 实现BaseService
+ * 通过反射获取mapperd
  * @author huxianguang
  * @create 2017-11-11-下午10:14
  **/
@@ -83,6 +81,48 @@ public class UpmsSystemController {
         upmsSystem.setCtime(time);
         upmsSystem.setOrders(time);
         int count = upmsSystemService.insertSelective(upmsSystem);
+        return new UpmsResult(UpmsResultConstant.SUCCESS,count);
+    }
+
+    /**
+     * @PathVariable 映射 URL 绑定的占位符
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/update/{id}",method = RequestMethod.GET)
+    public String update(@PathVariable("id") int id, ModelMap modelMap) {
+        UpmsSystem upmsSystem = upmsSystemService.selectByPrimaryKey(id);
+        modelMap.put("system",upmsSystem);
+        return "/manage/system/update.jsp";
+    }
+
+    @RequestMapping(value = "/update/{id}",method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(@PathVariable("id") int id, UpmsSystem system) {
+        //校验
+        ComplexResult result = FluentValidator.checkAll()
+                .on(system.getTitle(), new LengthValidator(1, 20, "标题"))
+                .on(system.getName(), new LengthValidator(1, 20, "名称"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return new UpmsResult(UpmsResultConstant.INVALID_LENGTH,result.getErrors());
+        }
+        system.setSystemId(id);
+        //验证成功
+        int count = upmsSystemService.updateByPrimaryKeySelective(system);
+        return new UpmsResult(UpmsResultConstant.SUCCESS,count);
+    }
+
+    @RequestMapping(value = "/delete/{ids}" ,method = RequestMethod.GET)
+    @ResponseBody
+    public Object delete(@PathVariable("ids") String ids) {
+        String[] splitId = ids.split("-");
+        int count = 0;
+        for (String id : splitId) {
+            count += upmsSystemService.deleteByPrimaryKey(Integer.parseInt(id));
+        }
         return new UpmsResult(UpmsResultConstant.SUCCESS,count);
     }
 }
