@@ -38,7 +38,7 @@ public interface UpmsUserMapper {
     int insert(UpmsUser record);
 
     /**
-     * 插入数据
+     * 插入数据 只插入不为null的数据
      * @param record
      * @return
      */

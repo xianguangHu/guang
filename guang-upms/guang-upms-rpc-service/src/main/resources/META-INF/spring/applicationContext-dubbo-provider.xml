@@ -21,4 +21,8 @@
     <!-- 系统 -->
     <bean id="upmsSystemService" class="com.guang.upms.rpc.service.imp.UpmsSystemServiceImpl"/>
     <dubbo:service interface="com.guang.upms.rpc.api.UpmsSystemService" ref="upmsSystemService" timeout="10000"/>
+
+    <!-- 组织 -->
+    <bean id="upmsOrganizationService" class="com.guang.upms.rpc.service.imp.UpmsOrganizationServiceImpl"/>
+    <dubbo:service interface="com.guang.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService" timeout="10000"/>
 </beans>

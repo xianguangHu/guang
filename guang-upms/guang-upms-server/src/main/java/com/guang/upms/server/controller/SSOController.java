@@ -111,4 +111,16 @@ public class SSOController {
     public String index() {
         return "/sso/login.jsp";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        // shiro退出登录
+        SecurityUtils.getSubject().logout();
+        // 跳回原地址
+        String redirectUrl = request.getHeader("Referer");
+        if (null == redirectUrl) {
+            redirectUrl = "/";
+        }
+        return "redirect:" + redirectUrl;
+    }
 }
