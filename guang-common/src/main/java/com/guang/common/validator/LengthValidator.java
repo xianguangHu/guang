@@ -6,6 +6,7 @@ import com.baidu.unbiz.fluentvalidator.ValidatorContext;
 import com.baidu.unbiz.fluentvalidator.ValidatorHandler;
 
 /**
+ * 校验长度
  * @author huxianguang
  * @create 2017-11-13-下午9:23
  **/

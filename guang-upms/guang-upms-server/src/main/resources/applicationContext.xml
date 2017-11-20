@@ -18,7 +18,10 @@
     <dubbo:reference id="upmsSystemService" interface="com.guang.upms.rpc.api.UpmsSystemService" mock="true"/>
 
     <!-- 组织-->
-    <dubbo:reference id="upmsOrganization" interface="com.guang.upms.rpc.api.UpmsOrganizationService" mock="true"/>
+    <dubbo:reference id="upmsOrganizationService" interface="com.guang.upms.rpc.api.UpmsOrganizationService" mock="true"/>
+
+    <!-- 用户-->
+    <dubbo:reference id="upmsUserService" interface="com.guang.upms.rpc.api.UpmsUserService" mock="true"/>
 
 
 </beans>

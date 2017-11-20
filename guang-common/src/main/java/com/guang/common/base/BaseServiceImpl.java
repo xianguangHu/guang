@@ -55,6 +55,17 @@ public class BaseServiceImpl<Mapper,Record, Example> implements BaseService<Reco
 
     @Override
     public int insert(Record record) {
+        try {
+            Method insert = mapper.getClass().getDeclaredMethod("insert", record.getClass());
+            Object result = insert.invoke(mapper, record);
+            return Integer.parseInt(String.valueOf(result));
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

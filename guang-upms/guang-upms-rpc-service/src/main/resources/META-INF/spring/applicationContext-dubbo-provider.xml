@@ -25,4 +25,8 @@
     <!-- 组织 -->
     <bean id="upmsOrganizationService" class="com.guang.upms.rpc.service.imp.UpmsOrganizationServiceImpl"/>
     <dubbo:service interface="com.guang.upms.rpc.api.UpmsOrganizationService" ref="upmsOrganizationService" timeout="10000"/>
+
+    <!-- 用户 -->
+    <bean id="upmsUserService" class="com.guang.upms.rpc.service.imp.UpmsUserServiceImpl"/>
+    <dubbo:service interface="com.guang.upms.rpc.api.UpmsUserService" ref="upmsUserService" timeout="10000"/>
 </beans>
