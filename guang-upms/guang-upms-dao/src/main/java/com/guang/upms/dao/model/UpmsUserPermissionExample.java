@@ -4,17 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author huxianguang
- */
-public class UpmsUserOrganizationExample implements Serializable{
+public class UpmsUserPermissionExample implements Serializable{
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UpmsUserOrganizationExample() {
+    public UpmsUserPermissionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -108,63 +105,63 @@ public class UpmsUserOrganizationExample implements Serializable{
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUserOrganizationIdIsNull() {
-            addCriterion("user_organization_id is null");
+        public Criteria andUserPermissionIdIsNull() {
+            addCriterion("user_permission_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdIsNotNull() {
-            addCriterion("user_organization_id is not null");
+        public Criteria andUserPermissionIdIsNotNull() {
+            addCriterion("user_permission_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdEqualTo(Integer value) {
-            addCriterion("user_organization_id =", value, "userOrganizationId");
+        public Criteria andUserPermissionIdEqualTo(Integer value) {
+            addCriterion("user_permission_id =", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdNotEqualTo(Integer value) {
-            addCriterion("user_organization_id <>", value, "userOrganizationId");
+        public Criteria andUserPermissionIdNotEqualTo(Integer value) {
+            addCriterion("user_permission_id <>", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdGreaterThan(Integer value) {
-            addCriterion("user_organization_id >", value, "userOrganizationId");
+        public Criteria andUserPermissionIdGreaterThan(Integer value) {
+            addCriterion("user_permission_id >", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_organization_id >=", value, "userOrganizationId");
+        public Criteria andUserPermissionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_permission_id >=", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdLessThan(Integer value) {
-            addCriterion("user_organization_id <", value, "userOrganizationId");
+        public Criteria andUserPermissionIdLessThan(Integer value) {
+            addCriterion("user_permission_id <", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_organization_id <=", value, "userOrganizationId");
+        public Criteria andUserPermissionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_permission_id <=", value, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdIn(List<Integer> values) {
-            addCriterion("user_organization_id in", values, "userOrganizationId");
+        public Criteria andUserPermissionIdIn(List<Integer> values) {
+            addCriterion("user_permission_id in", values, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdNotIn(List<Integer> values) {
-            addCriterion("user_organization_id not in", values, "userOrganizationId");
+        public Criteria andUserPermissionIdNotIn(List<Integer> values) {
+            addCriterion("user_permission_id not in", values, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_organization_id between", value1, value2, "userOrganizationId");
+        public Criteria andUserPermissionIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_permission_id between", value1, value2, "userPermissionId");
             return (Criteria) this;
         }
 
-        public Criteria andUserOrganizationIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_organization_id not between", value1, value2, "userOrganizationId");
+        public Criteria andUserPermissionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_permission_id not between", value1, value2, "userPermissionId");
             return (Criteria) this;
         }
 
@@ -228,75 +225,135 @@ public class UpmsUserOrganizationExample implements Serializable{
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdIsNull() {
-            addCriterion("organization_id is null");
+        public Criteria andPermissionIdIsNull() {
+            addCriterion("permission_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdIsNotNull() {
-            addCriterion("organization_id is not null");
+        public Criteria andPermissionIdIsNotNull() {
+            addCriterion("permission_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdEqualTo(Integer value) {
-            addCriterion("organization_id =", value, "organizationId");
+        public Criteria andPermissionIdEqualTo(Integer value) {
+            addCriterion("permission_id =", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdNotEqualTo(Integer value) {
-            addCriterion("organization_id <>", value, "organizationId");
+        public Criteria andPermissionIdNotEqualTo(Integer value) {
+            addCriterion("permission_id <>", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdGreaterThan(Integer value) {
-            addCriterion("organization_id >", value, "organizationId");
+        public Criteria andPermissionIdGreaterThan(Integer value) {
+            addCriterion("permission_id >", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("organization_id >=", value, "organizationId");
+        public Criteria andPermissionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("permission_id >=", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdLessThan(Integer value) {
-            addCriterion("organization_id <", value, "organizationId");
+        public Criteria andPermissionIdLessThan(Integer value) {
+            addCriterion("permission_id <", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdLessThanOrEqualTo(Integer value) {
-            addCriterion("organization_id <=", value, "organizationId");
+        public Criteria andPermissionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("permission_id <=", value, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdIn(List<Integer> values) {
-            addCriterion("organization_id in", values, "organizationId");
+        public Criteria andPermissionIdIn(List<Integer> values) {
+            addCriterion("permission_id in", values, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdNotIn(List<Integer> values) {
-            addCriterion("organization_id not in", values, "organizationId");
+        public Criteria andPermissionIdNotIn(List<Integer> values) {
+            addCriterion("permission_id not in", values, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdBetween(Integer value1, Integer value2) {
-            addCriterion("organization_id between", value1, value2, "organizationId");
+        public Criteria andPermissionIdBetween(Integer value1, Integer value2) {
+            addCriterion("permission_id between", value1, value2, "permissionId");
             return (Criteria) this;
         }
 
-        public Criteria andOrganizationIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("organization_id not between", value1, value2, "organizationId");
+        public Criteria andPermissionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("permission_id not between", value1, value2, "permissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Byte value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Byte value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Byte value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Byte value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Byte> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Byte> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Byte value1, Byte value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
     }
 
-    public static class Criteria extends GeneratedCriteria implements Serializable{
+    public static class Criteria extends GeneratedCriteria  implements Serializable{
 
         protected Criteria() {
             super();
         }
     }
 
-    public static class Criterion implements Serializable{
+    public static class Criterion  implements Serializable{
         private String condition;
 
         private Object value;

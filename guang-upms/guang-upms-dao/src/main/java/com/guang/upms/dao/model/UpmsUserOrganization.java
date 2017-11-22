@@ -1,6 +1,8 @@
 package com.guang.upms.dao.model;
 
-public class UpmsUserOrganization {
+import java.io.Serializable;
+
+public class UpmsUserOrganization implements Serializable {
     private Integer userOrganizationId;
 
     private Integer userId;

@@ -18,10 +18,27 @@
     <dubbo:reference id="upmsSystemService" interface="com.guang.upms.rpc.api.UpmsSystemService" mock="true"/>
 
     <!-- 组织-->
-    <dubbo:reference id="upmsOrganizationService" interface="com.guang.upms.rpc.api.UpmsOrganizationService" mock="true"/>
+    <dubbo:reference id="upmsOrganizationService" interface="com.guang.upms.rpc.api.UpmsOrganizationService"
+                     mock="true"/>
 
     <!-- 用户-->
     <dubbo:reference id="upmsUserService" interface="com.guang.upms.rpc.api.UpmsUserService" mock="true"/>
+
+    <!-- 用户组织-->
+    <dubbo:reference id="upmsUserOrganizationService" interface="com.guang.upms.rpc.api.UpmsUserOrganizationService"
+                     mock="true"/>
+
+    <!-- 用户角色-->
+    <dubbo:reference id="upmsUserRoleService" interface="com.guang.upms.rpc.api.UpmsUserRoleService" mock="true"/>
+
+    <!-- 角色-->
+    <dubbo:reference id="upmsRoleService" interface="com.guang.upms.rpc.api.UpmsRoleService" mock="true"/>
+
+    <!-- 权限-->
+    <dubbo:reference id="upmsPermissionService" interface="com.guang.upms.rpc.api.UpmsPermissionService" mock="true"/>
+
+    <!-- 用户权限-->
+    <dubbo:reference id="upmsUserPermissionService" interface="com.guang.upms.rpc.api.UpmsUserPermissionService" mock="true"/>
 
 
 </beans>
