@@ -52,5 +52,9 @@
     <bean id="upmsUserPermissionService" class="com.guang.upms.rpc.service.imp.UpmsUserPermissionServiceImpl"/>
     <dubbo:service interface="com.guang.upms.rpc.api.UpmsUserPermissionService" ref="upmsUserPermissionService" timeout="10000"/>
 
+    <!-- 角色权限 -->
+    <bean id="upmsRolePermissionService" class="com.guang.upms.rpc.service.imp.UpmsRolePermissionServiceImpl"/>
+    <dubbo:service interface="com.guang.upms.rpc.api.UpmsRolePermissionService" ref="upmsRolePermissionService" timeout="10000"/>
+
 
 </beans>

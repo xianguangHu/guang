@@ -41,4 +41,8 @@
     <dubbo:reference id="upmsUserPermissionService" interface="com.guang.upms.rpc.api.UpmsUserPermissionService" mock="true"/>
 
 
+    <!-- 角色权限-->
+    <dubbo:reference id="upmsRolePermissionService" interface="com.guang.upms.rpc.api.UpmsRolePermissionService" mock="true"/>
+
+
 </beans>
