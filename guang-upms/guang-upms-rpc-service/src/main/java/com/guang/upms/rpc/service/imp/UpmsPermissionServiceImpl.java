@@ -17,4 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @BaseService
 public class UpmsPermissionServiceImpl extends BaseServiceImpl<UpmsPermissionMapper,UpmsPermission,UpmsPermissionExample> implements UpmsPermissionService{
+
+
+    /**
+     * 根据roleid来查找权限
+     * @param roleId
+     * @return
+     */
+    @Override
+    public Object getTreeByRoleId(int roleId) {
+        return null;
+    }
 }

@@ -19,7 +19,7 @@
       <module name="guang" target="1.5" />
       <module name="guang-common" target="1.6" />
       <module name="guang-upms" target="1.5" />
-      <module name="guang-upms-client" target="1.5" />
+      <module name="guang-upms-client" target="1.6" />
       <module name="guang-upms-common" target="1.5" />
       <module name="guang-upms-dao" target="1.5" />
       <module name="guang-upms-rpc-api" target="1.6" />

@@ -10,10 +10,10 @@
            http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <mvc:view-controller path="/" view-name="/index.jsp"/>
+    <!--<mvc:view-controller path="/" view-name="/index.jsp"/>-->
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.guang"/>
-    <!--<mvc:view-controller path="/" view-name="/WEB-INF/jsp/index.jsp"/>-->
+    <mvc:view-controller path="/success" view-name="/success.jsp"/>
     <!-- 根目录'/'对应页面 -->
     <mvc:default-servlet-handler/>
 

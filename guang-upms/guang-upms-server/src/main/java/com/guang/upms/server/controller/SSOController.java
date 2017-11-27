@@ -2,6 +2,7 @@ package com.guang.upms.server.controller;
 
 
 import com.guang.common.utils.RedisUtil;
+import com.guang.upms.client.shiro.session.UpmsSession;
 import com.guang.upms.client.shiro.session.UpmsSessionDao;
 import com.guang.upms.common.constant.UpmsResult;
 import com.guang.upms.common.constant.UpmsResultConstant;
@@ -59,7 +60,7 @@ public class SSOController {
         Session session = subject.getSession();
         String sessionId = session.getId().toString();
         //判断是否已登录，如果已经登录就回跳，防止重复登录
-        String hasCode = RedisUtil.get(GUANG_UPMS_SERVER_SESSION_ID);
+        String hasCode = RedisUtil.get(GUANG_UPMS_SERVER_SESSION_ID + "_" +sessionId);
         // code 校验值
         if (StringUtils.isBlank(hasCode)) {
             //说明redis中没有session缓存
@@ -81,14 +82,8 @@ public class SSOController {
                 return new UpmsResult(UpmsResultConstant.INVALID_ACCOUNT, "帐号已锁定！");
             }
 
-            // 更新session状态
-            //不需要更新状态还没有实现UpmsSession
-            //也不需要将session保存到redis上，
-            //因为subject.getsession()如果没有session subject就会委托安全管理器
-            //安全管理器会委托SessionManager创建session 而我重写了sessionDAO 会自动将session保存到redis
-            //sessionDAO.updateStatus(sessionId, UpmsSession.OnlineStatus.on_line);
-
-
+            //更新session
+            sessionDAO.updateStatus(sessionId, UpmsSession.OnlineStatus.on_line);
             //全局会话sessionId列表，供会话列表使用
             RedisUtil.lpush(GUANG_UPMS_SERVER_SESSION_IDS,sessionId.toString());
             //默认验证账号密码正确
@@ -101,9 +96,9 @@ public class SSOController {
         // 回跳登录前地址
         String backurl = request.getParameter("backurl");
         if (StringUtils.isBlank(backurl)) {
-            return new UpmsResult(UpmsResultConstant.SUCCESS, "/");
+            return new UpmsResult(UpmsResultConstant.SUCCESS, "/success");
         } else {
-            return new UpmsResult(UpmsResultConstant.SUCCESS, backurl);
+            return new UpmsResult(UpmsResultConstant.SUCCESS, "/success");
         }
     }
 

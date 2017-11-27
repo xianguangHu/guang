@@ -1,11 +1,10 @@
 package com.guang.common.utils;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.Session;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * session序列化工具
@@ -26,6 +25,19 @@ public class SerializableUtil {
             return Base64.encodeToString(bos.toByteArray());
         } catch (Exception e) {
             throw new RuntimeException("serialize session error :" + e);
+        }
+    }
+
+    public static Session deserialize(String sessionStr) {
+        if (StringUtils.isBlank(sessionStr)) {
+            return null;
+        }
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(Base64.decode(sessionStr));
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return (Session) ois.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException("deserialize session error", e);
         }
     }
 }

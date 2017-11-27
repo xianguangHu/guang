@@ -7,4 +7,8 @@ import com.guang.upms.dao.model.UpmsPermissionExample;
 
 public class UpmsPermissionServiceMock extends BaseServiceMock<UpmsPermissionMapper,UpmsPermission,UpmsPermissionExample> implements UpmsPermissionService{
 
+    @Override
+    public Object getTreeByRoleId(int roleId) {
+        return null;
+    }
 }

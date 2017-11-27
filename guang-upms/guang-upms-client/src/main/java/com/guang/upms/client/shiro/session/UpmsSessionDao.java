@@ -3,11 +3,14 @@ package com.guang.upms.client.shiro.session;
 import com.guang.common.utils.RedisUtil;
 import com.guang.common.utils.SerializableUtil;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.Jedis;
 
 import java.io.Serializable;
+import java.util.*;
 
 /**
  * 基于redis的sessionDao  实现共享缓存session
@@ -21,16 +24,8 @@ public class UpmsSessionDao extends CachingSessionDAO {
     //会话key
     private final static String GUANG_UPMS_SHIRO_SESSION_ID = "guang-upms-shiro-session-id";
 
-    @Override
-    protected void doUpdate(Session session) {
-
-    }
-
-    @Override
-    protected void doDelete(Session session) {
-
-    }
-
+    //全局会话key列表
+    private final static String GUANG_UPMS_SERVER_SESSION_IDS = "guang-upms-server-session-ids";
     /**
      * 创建session 保存到数据库
      * @param session
@@ -44,14 +39,59 @@ public class UpmsSessionDao extends CachingSessionDAO {
         //将session保存到redis
         RedisUtil.set(GUANG_UPMS_SHIRO_SESSION_ID + "_" +sessionId,
                 SerializableUtil.serializa(session), (int) (session.getTimeout()/1000));
-        _log.debug("doCreate >>>>> sessionId={}",sessionId);
+        _log.info("doCreate >>>>> sessionId={}",sessionId);
         return sessionId;
     }
 
+    /**
+     * 查询session
+     * @param sessionId
+     * @return
+     */
     @Override
     protected Session doReadSession(Serializable sessionId) {
-        return null;
+        String session = RedisUtil.get(GUANG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
+        _log.info("doReadSession >>>>> sessionId={}",session);
+        return SerializableUtil.deserialize(session);
     }
 
 
+
+    public Map getActiveSessions(int offset,int limit) {
+        Map sessions = new HashMap();
+        Jedis jedis = RedisUtil.getJedis();
+        //获取在线session人数
+        Long total = jedis.llen(GUANG_UPMS_SERVER_SESSION_IDS);
+        List<String> ids = jedis.lrange(GUANG_UPMS_SERVER_SESSION_IDS, offset, (offset + limit - 1));
+        List<Session> rows = new ArrayList<Session>();
+        for (String id : ids) {
+//            RedisUtil.get();
+        }
+        return sessions;
+    }
+
+    public void updateStatus(Serializable sessionId,UpmsSession.OnlineStatus onlineStatus){
+        UpmsSession session = (UpmsSession) doReadSession(sessionId);
+        if (null == session) {
+            return;
+        }
+        session.setStatus(onlineStatus);
+        RedisUtil.set(GUANG_UPMS_SHIRO_SESSION_ID + "_" + session.getId(), SerializableUtil.serializa(session), (int) session.getTimeout() / 1000);
+    }
+
+
+    @Override
+    protected void doUpdate(Session session) {
+
+    }
+
+    @Override
+    protected void doDelete(Session session) {
+
+    }
+
+    @Override
+    public Collection<Session> getActiveSessions() {
+        return null;
+    }
 }
