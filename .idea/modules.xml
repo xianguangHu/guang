@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/guang.iml" filepath="$PROJECT_DIR$/guang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-cms/guang-cms.iml" filepath="$PROJECT_DIR$/guang-cms/guang-cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-cms/guang-cms-admin/guang-cms-admin.iml" filepath="$PROJECT_DIR$/guang-cms/guang-cms-admin/guang-cms-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guang-cms/guang-cms-common/guang-cms-common.iml" filepath="$PROJECT_DIR$/guang-cms/guang-cms-common/guang-cms-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guang-common/guang-common.iml" filepath="$PROJECT_DIR$/guang-common/guang-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms.iml" />
       <module fileurl="file://$PROJECT_DIR$/guang-upms/guang-upms-client/guang-upms-client.iml" filepath="$PROJECT_DIR$/guang-upms/guang-upms-client/guang-upms-client.iml" />

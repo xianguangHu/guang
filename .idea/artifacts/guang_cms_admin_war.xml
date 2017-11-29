@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="guang-cms-admin:war">
+    <output-path>$PROJECT_DIR$/guang-cms/guang-cms-admin/target</output-path>
+    <root id="archive" name="guang-cms-admin.war">
+      <element id="artifact" artifact-name="guang-cms-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

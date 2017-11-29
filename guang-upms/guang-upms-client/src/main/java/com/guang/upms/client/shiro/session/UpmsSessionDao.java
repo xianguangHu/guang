@@ -4,6 +4,7 @@ import com.guang.common.utils.RedisUtil;
 import com.guang.common.utils.SerializableUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
+import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +53,9 @@ public class UpmsSessionDao extends CachingSessionDAO {
     protected Session doReadSession(Serializable sessionId) {
         String session = RedisUtil.get(GUANG_UPMS_SHIRO_SESSION_ID + "_" + sessionId);
         _log.info("doReadSession >>>>> sessionId={}",session);
-        return SerializableUtil.deserialize(session);
+        Session deserialize = SerializableUtil.deserialize(session);
+        System.out.println();
+        return deserialize;
     }
 
 
@@ -82,7 +85,20 @@ public class UpmsSessionDao extends CachingSessionDAO {
 
     @Override
     protected void doUpdate(Session session) {
-
+// 如果会话过期/停止 没必要再更新了
+        if(session instanceof ValidatingSession && !((ValidatingSession)session).isValid()) {
+            return;
+        }
+        // 更新session的最后一次访问时间
+        UpmsSession upmsSession = (UpmsSession) session;
+        UpmsSession cacheUpmsSession = (UpmsSession) doReadSession(session.getId());
+        if (null != cacheUpmsSession) {
+            upmsSession.setStatus(cacheUpmsSession.getStatus());
+            upmsSession.setAttribute("FORCE_LOGOUT", cacheUpmsSession.getAttribute("FORCE_LOGOUT"));
+        }
+        RedisUtil.set(GUANG_UPMS_SHIRO_SESSION_ID + "_" + session.getId(), SerializableUtil.serializa(session), (int) session.getTimeout() / 1000);
+        // 更新ZHENG_UPMS_SERVER_SESSION_ID、ZHENG_UPMS_SERVER_CODE过期时间 TODO
+        _log.debug("doUpdate >>>>> sessionId={}", session.getId());
     }
 
     @Override

@@ -84,6 +84,7 @@ public class SSOController {
 
             //更新session
             sessionDAO.updateStatus(sessionId, UpmsSession.OnlineStatus.on_line);
+            System.out.println(subject);
             //全局会话sessionId列表，供会话列表使用
             RedisUtil.lpush(GUANG_UPMS_SERVER_SESSION_IDS,sessionId.toString());
             //默认验证账号密码正确

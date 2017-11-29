@@ -24,6 +24,10 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!--
+        /* ： 拦截所有请求 ，包括jsp
+        /  ： 拦截请求，不包括jsp
+    -->
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>

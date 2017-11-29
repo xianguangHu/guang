@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="classpath*:dev.properties"/>
@@ -13,11 +14,11 @@
         <property name="loginUrl" value="${guang.upms.sso.server.url}"/>
         <property name="successUrl" value="${guang.upms.successUrl}"/>
         <property name="unauthorizedUrl" value="${guang.upms.unauthorizedUrl}"/>
-        <!--<property name="filters">-->
-            <!--<util:map>-->
-                <!--<entry key="authc" value-ref="upmsAuthenticationFilter"/>-->
-            <!--</util:map>-->
-        <!--</property>-->
+        <property name="filters">
+            <util:map>
+                <entry key="authcq" value-ref="upmsAuthenticationFilter"/>
+            </util:map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 /manage/** = authc
@@ -30,6 +31,7 @@
         </property>
     </bean>
 
+    <bean id="upmsAuthenticationFilter" class="com.guang.upms.client.shiro.filter.UpmsAuthenticationFilter"/>
     <!-- 安全管理器-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="upmsRealm"/>
@@ -67,7 +69,7 @@
         <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
         <property name="maxAge" value="-1"/>
         <!-- Cookie名称 -->
-        <property name="name" value="guang-upms-client-session-id"/>
+        <property name="name" value="guang-upms-server-session-id"/>
     </bean>
 
     <!-- 重写的session Factory-->
@@ -80,10 +82,10 @@
     <!--<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
 
     <!-- 设置SecurityUtils，相当于调用SecurityUtils.setSecurityManager(securityManager) -->
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
-        <property name="arguments" ref="securityManager"/>
-    </bean>
+    <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+        <!--<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>-->
+        <!--<property name="arguments" ref="securityManager"/>-->
+    <!--</bean>-->
 
     <!-- 开启Shiro Spring AOP权限注解@RequiresPermissions的支持 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
